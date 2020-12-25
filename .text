@@ -1,0 +1,65 @@
+Babel installation >>>
+
+1. we need to install packge json (npm init)
+2. we need the install two package for babel (npm install @babel/core @babel/cli --save-dev)
+(npm install @babel/preset-env --save-dev)
+3.then we need to create (.babelrc) file and put preset in like so >>> {
+  "presets": []
+}
+4. in order to compile file we need to use this code (node_modules/.bin/babel src/index.js -o dist/assets/bundle.js)
+after in folder section we need to specify created folder and file name
+5. then we need to add this to the scripts which is given below
+"scripts": {
+    "babel": "node_modules/.bin/babel src/index.js -o dist/assets/bundle.js"
+  }
+
+6.then we need run scripts in our terminal like so >> run babel (with our script name which we set out as our script name)
+7.in order for auto compilation as we do not have to run over and over we can spcify -w keywords inisde our scripts like so >> 
+"babel": "node_modules/.bin/babel src/index.js -w -o dist/assets/bundle.js"
+
+
+Webpack installation >>
+
+developers use webpack for bundeling multiple js inside one js file which would be running into browswer
+
+1. first we need to create a file inside the main directory call >> webpack.config.js
+2. we need to export the module which would be containing entry point , output point and folder directory and file directory would be added inside of this output point. we need to format which given below >>
+
+// we  required of path referene from node mudule
+const path = require('path');
+
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    path: path.resolve(__dirname,'dist/assets'),
+    filename:'bundle.js'
+  }
+}
+
+3. after that we need to install webpack cli in our terminal like so >> npm install webpack webpack-cli --save-dev
+
+4. afterwards we need add another script in package.json file as we did previously with bable script like so >> 
+ "scripts": {
+    "babel": "node_modules/.bin/babel src/index.js -w -o dist/assets/bundle.js",
+    "webpack":"node_modules/.bin/webpack"
+  }
+
+5. then we need to run webpack once again in our terminal like so >>  npm run webpack
+
+6. we can use better web dev server instead of live server for better devlopment experience
+>> npm install webpack-dev-server --save-dev
+7. after that we need to again configure that into webpack.configure.js file like so >>  
+devServer:{
+    contentBase: path.resolve(__dirname,'dist'),
+    publicPath:'/assets/'
+  }
+
+8. after that we can add script tage to package.json file and run in into terminal
+
+ "scripts": {
+    "babel": "node_modules/.bin/babel src/index.js -w -o dist/assets/bundle.js",
+    "webpack": "node_modules/.bin/webpack ",
+    "serve": "webpack serve"
+  }
+
+  >> npm run server;
